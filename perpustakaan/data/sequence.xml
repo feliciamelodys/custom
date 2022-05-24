@@ -1,0 +1,17 @@
+<odoo>
+    <record id="perpus_peminjaman_sequence" model="ir.sequence">
+        <field name="name">Peminjaman</field>
+        <field name="implementation">standard</field>
+        <field name="code">perpus.peminjaman</field>
+        <field name="prefix">KLB-%(y)s%(month)s-</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="perpus_buku_sequence" model="ir.sequence">
+        <field name="name">Buku</field>
+        <field name="implementation">standard</field>
+        <field name="code">perpus.buku</field>
+        <field name="prefix">BK-%(y)s%(month)s-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

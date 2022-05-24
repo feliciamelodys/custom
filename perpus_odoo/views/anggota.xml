@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        
+        <!-- Add you code here -->
+        <!-- anggota kanban view -->
+        <record model="ir.ui.view" id="anggota_kanban_view">
+            <field name="name">anggota.kanban</field>
+            <field name="model">anggota</field>
+            <field name="arch" type="xml">
+                <kanban class="o_anggota_kanban">
+                    <field name="id"/>
+                    <field name="image" widget="image"/>
+                    <field name="name"/>
+                    <field name="tgl_lahir"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_anggota_kanban">
+                                <t t-if="record.image_small">
+                                </t>
+                                 <t t-else="">
+                                 <div class="o_kanban_image_fill_left d-none d-md-block" padding="10"> 
+                                   <field name="image" widget="image" class="oe_avatar" width="100" height="140 "/>
+                                 </div>
+                                </t>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                    <h3>
+                                      <field name="name"/>
+                                    </h3>
+                                    </strong>
+                                <div class="o_kanban_tags_section">
+                                    <ul>
+                                        <li t-if="record.no_anggota"><h5><field name="no_anggota"/></h5></li>
+                                        <li t-if="record.tgl_lahir" style="font-size:15px"><field name="tgl_lahir" widget="date"/></li>
+                                        <li t-if="record.email" style="font-size:15px"><field name="email" widget="email"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- anggota tree view -->
+        <record id="anggota_view_tree" model="ir.ui.view">
+            <field name="name">anggota.view.tree</field>
+            <field name="model">anggota</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="image" widget="image"/>
+                    <field name="no_anggota"/>
+                    <field name="tmp_lahir"/>
+                    <field name="tgl_lahir"/>
+                    <field name="alamat"/>
+                    <field name="no_telp" widget="phone"/>
+                    <field name="email" widget="email"/>
+                    <field name="agama" widget="badge"/>
+                    <field name="jenis_kel" widget="badge" options="{'classes': {'L': 'info', 'P': 'danger'}}"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- anggota form view -->
+        <record id="anggota_view_form" model="ir.ui.view">
+            <field name="name">anggota.view.form</field>
+            <field name="model">anggota</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                    <div class="oe_title"> 
+                      <label for="no_anggota" class="oe_edit_only" string="No Anggota" />
+                      <h1><field name="no_anggota"/> </h1>
+                    </div>
+                        <!-- Add your fields here -->
+                    <group string="Foto Profil">
+                    <field name="image" widget="image" width="200" height="220"/> 
+                    </group>
+                    <group string="Data Anggota" col="4" cosplan="4">
+                    <field name="name"/>
+                    <field name="tmp_lahir"/>
+                    <field name="tgl_lahir"/>
+                    <field name="no_telp" widget="phone"/>
+                    <field name="email" widget="email"/>
+                    <field name="agama" widget="badge"/>
+                    <field name="jenis_kel" widget="badge" options="{'classes': {'L': 'info', 'P': 'danger'}}"/>
+                    </group>
+                    
+
+                    <group col="4" cosplan="4">
+                    <field name="alamat"/>
+                    <field name="kota_id" domain="[('propinsi_id', '=', propinsi_id)]"/>
+                    </group>
+                    <group col="4" cosplan="4">
+                    <field name="propinsi_id"/>
+                    <field name="kecamatan_id" domain="[('kota_id', '=', kota_id)]"/>
+                    </group>
+                    
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="seq_anggota" model="ir.sequence">
+            <field name="name">No Anggota</field>
+            <field name="code">anggota</field>
+            <field name="prefix">A%(y)s.%(month)s</field>
+            <field name="padding">3</field>
+        </record>
+        <!-- anggota action window -->
+        <record id="anggota_action" model="ir.actions.act_window">
+            <field name="name">Daftar Anggota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">anggota</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+        <menuitem id="Anggota_menu_categ" name="Anggota" parent="perpus_menu_root" sequence="20"/>
+        <menuitem id="anggota_menu_act" name="Anggota" parent="Anggota_menu_categ" action="anggota_action" sequence="50"/>
+
+        
+    </data>
+</odoo>

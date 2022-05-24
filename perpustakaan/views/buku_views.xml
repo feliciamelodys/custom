@@ -1,0 +1,81 @@
+<odoo>
+<!--    Form-->
+    <record id="perpus_buku_view_form" model="ir.ui.view">
+        <field name="name">Buku Form</field>
+        <field name="model">perpus.buku</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="kode"/>
+                            <field name="name"/>
+                            <field name="kategori_id"/>
+                            <field name="harga"/>
+                        </group>
+                        <group>
+                            <field name="penerbit"/>
+                            <field name="pengarang"/>
+                            <field name="tahun"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    Tree-->
+    <record id="perpus_buku_view_tree" model="ir.ui.view">
+        <field name="name">Buku Tree</field>
+        <field name="model">perpus.buku</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="kode"/>
+                <field name="name"/>
+                <field name="penerbit"/>
+                <field name="pengarang"/>
+                <field name="tahun"/>
+                <field name="kategori_id"/>
+                <field name="harga"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    Search-->
+    <record id="perpus_buku_view_search" model="ir.ui.view">
+        <field name="name">Buku Search</field>
+        <field name="model">perpus.buku</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="kode"/>
+                <field name="name"/>
+                <field name="penerbit"/>
+                <field name="pengarang"/>
+                <field name="tahun"/>
+                <field name="kategori_id"/>
+
+                <filter string="Available" name="available_filter" domain="[('state', '=', 'available')]"/>
+                <filter string="Non Available" name="non_available_filter" domain="[('state', '=', 'non_available')]"/>
+                <separator/>
+                <group string="Group By..." expand="0" name="groupby">
+                    <filter string="Penerbit" name="penerbit_group" context="{'group_by': 'penerbit'}"/>
+                    <filter string="Pengarang" name="pengarang_group" context="{'group_by': 'pengarang'}"/>
+                    <filter string="Status" name="state_group" context="{'group_by': 'state'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+<!--    Action-->
+    <record id="perpus_buku_action" model="ir.actions.act_window">
+        <field name="name">Buku</field>
+        <field name="res_model">perpus.buku</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

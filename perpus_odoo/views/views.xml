@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="smk-telkom.list">
+      <field name="name">smk-telkom list</field>
+      <field name="model">smk-telkom.smk-telkom</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="smk-telkom.action_window">
+      <field name="name">smk-telkom window</field>
+      <field name="res_model">smk-telkom.smk-telkom</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="smk-telkom.action_server">
+      <field name="name">smk-telkom server</field>
+      <field name="model_id" ref="model_smk-telkom_smk-telkom"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="smk-telkom" id="smk-telkom.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="smk-telkom.menu_1" parent="smk-telkom.menu_root"/>
+    <menuitem name="Menu 2" id="smk-telkom.menu_2" parent="smk-telkom.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="smk-telkom.menu_1_list" parent="smk-telkom.menu_1"
+              action="smk-telkom.action_window"/>
+    <menuitem name="Server to list" id="smk-telkom" parent="smk-telkom.menu_2"
+              action="smk-telkom.action_server"/>
+-->
+  </data>
+</odoo>

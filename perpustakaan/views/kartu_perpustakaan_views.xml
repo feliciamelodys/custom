@@ -1,0 +1,67 @@
+<odoo>
+<!--    Kartu Perpustakaan Tree View-->
+    <record id="kartu_perpustakan_view_tree" model="ir.ui.view">
+        <field name="name">Kartu Perpustakaan Tree</field>
+        <field name="model">perpus.kartu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="peminjam_id"/>
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+<!--    Kartu Perpustakaan Form View -->
+    <record id="kartu_perpustakaan_view_form" model="ir.ui.view">
+        <field name="name">Kartu Perpustakaan Form</field>
+        <field name="model">perpus.kartu</field>
+        <field name="arch" type="xml">
+            <form string="Kartu Perpustakaan">
+               <header>
+                    <button string="Confirm" type="object" name="kartu_confirm" states="draft" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+               </header>
+                <sheet>
+                    <group col="4" cosplan="4">
+                        <field name="name"/>
+                        <field name="peminjam_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Detail Peminjaman">
+                            <field colspan="4" name="line_ids" nolabel="1" widget="one2many_list">
+                                <tree string="" editable="bottom">
+                                    <field name="buku_id"/>
+                                    <field name="harga"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="duration"/>
+                                    <field name="return_date"/>
+                                    <field name="denda"/>
+                                    <field name="state"/>
+                                    <button name="pinjam_confirm" type="object" states="draft" string="Confirm" icon="fa-check-square"/>
+                                    <button name="pinjam_done" type="object" states="rent" string="Done" icon="fa-mail-reply"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group colspan="4" class="oe_subtotal_footer oe_right">
+                        <field name="total"/>
+                    </group>
+                    <group string="Notes">
+                        <field name="note" colspan="4" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    Kartu Perpustakaan Action-->
+    <record id="perpus_kartu_action" model="ir.actions.act_window">
+        <field name="name">Kartu Perpustakaan</field>
+        <field name="res_model">perpus.kartu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

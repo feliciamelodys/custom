@@ -1,0 +1,64 @@
+<odoo>
+    <record id="matkul_view_form" model="ir.ui.view">
+        <field name="name">matkul.view.form</field>
+        <field name="model">nilai.matkul</field>
+        <field name="arch" type="xml">
+            <form string="Mata Kuliah form">
+                <header>
+                    <button name="action_settodraft" string="Set to Draft" states="canceled" type="object" class="btn-primary"/>
+                    <button name="action_done" string="Done" states="draft" type="object" class="btn-primary"/>
+                    <button name="action_canceled" string="Cancel" states="canceled" type="object"
+                            class="btn-primary" groups="sales_team.group_sale_manager"/>
+                    <!-- diatur visibility supaya hanya manager yg bs cancel -->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="kode"/>
+                            <field name="name"/>
+                            <field name="sks"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="matkul_view_list" model="ir.ui.view">
+        <field name="name">matkul.view.list</field>
+        <field name="model">nilai.matkul</field>
+        <field name="arch" type="xml">
+            <tree string="Mata Kuliah list">
+                <field name="kode"/>
+                <field name="name"/>
+                <field name="sks"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="matkul_view_search" model="ir.ui.view">
+        <field name="name">matkul.view.search</field>
+        <field name="model">nilai.matkul</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="kode"/>
+                <field name="name"/>
+                <field name="sks"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Done" name="done_filter" domain="[('state', '=', 'done')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="matkul_action" model="ir.actions.act_window">
+        <field name="name">Mata Kuliah</field>
+        <field name="res_model">nilai.matkul</field>
+        <field name="view_id" ref="matkul_view_list"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="matkul_menu" parent="nilai.nilai_menu" name="Mata Kuliah" action="matkul_action" sequence="30"/>
+
+</odoo>

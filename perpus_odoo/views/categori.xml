@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- categori tree view -->
+        <record id="categori_view_tree" model="ir.ui.view">
+            <field name="name">categori.view.tree</field>
+            <field name="model">categori</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>                 
+                </tree>
+            </field>
+        </record>
+        <!-- categori form view -->
+        <record id="categori_view_form" model="ir.ui.view">
+            <field name="name">categori.view.form</field>
+            <field name="model">categori</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- categori action window -->
+        <record id="categori_action" model="ir.actions.act_window">
+            <field name="name">Categori Buku</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">categori</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="categori_menu_act" name="Categori buku" parent="master_menu_categ" action="categori_action" sequence="30"/>
+        
+    </data>
+</odoo>

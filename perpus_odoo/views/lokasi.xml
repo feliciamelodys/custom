@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- lokasi tree view -->
+        <record id="lokasi_view_tree" model="ir.ui.view">
+            <field name="name">lokasi.view.tree</field>
+            <field name="model">lokasi</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="buku"/>
+                    
+                </tree>
+            </field>
+        </record>
+        <!-- lokasi form view -->
+        <record id="model_name_view_form" model="ir.ui.view">
+            <field name="name">lokasi.view.form</field>
+            <field name="model">lokasi</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="buku"/>
+         
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- lokasi action window -->
+        <record id="lokasi_action" model="ir.actions.act_window">
+            <field name="name">Lokasi Buku</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">lokasi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="lokasi_menu_act" name="lokasi buku" parent="master_menu_categ" action="lokasi_action" sequence="40"/> 
+        
+    </data>
+</odoo>

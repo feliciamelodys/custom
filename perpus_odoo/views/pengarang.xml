@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- pengarang kanban view -->
+        <record model="ir.ui.view" id="pengarang_kanban_view">
+            <field name="name">pengarang.kanban</field>
+            <field name="model">pengarang</field>
+            <field name="arch" type="xml">
+                <kanban class="o_pengarang_kanban">
+                    <field name="id"/>
+                    <field name="image" widget="image"/>
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_pengarang_kanban">
+                                <t t-if="record.image_small">
+                                </t>
+                                 <t t-else="">
+                                 <div class="o_kanban_image_fill_left d-none d-md-block" padding="10"> 
+                                     
+                                   <field name="image" widget="image" class="oe_avatar" width="100" height="140"/>
+                                 </div>
+                          </t>
+                                <div class="oe_kanban_details">
+                                   <strong class="o_kanban_record_title">
+                                   <h3>
+                                      <b><field name="name"/></b>
+                                      </h3>
+                                   </strong>
+                                  <div class="o_kanban_tags_section">
+                                    <ul>
+                                        <li t-if="record.tgl_lahir"><h5><i><field name="tgl_lahir"/></i></h5></li>
+                                        <li t-if="record.tmp_lahir"><h9><field name="tmp_lahir"/></h9></li>
+                                    </ul>
+                                </div>
+                            </div>
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- pengarang tree view -->
+        <record id="pengarang_view_tree" model="ir.ui.view">
+            <field name="name">pengarang.view.tree</field>
+            <field name="model">pengarang</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="image" widget="image"/>
+                    <field name="jenis_kel"/>
+                    <field name="tgl_lahir"/>
+                    <field name="tmp_lahir"/>    
+                    <field name="agama"/>       
+                </tree>
+            </field>
+        </record>
+        <!-- pengarang form view -->
+        <record id="pengarang_view_form" model="ir.ui.view">
+            <field name="name">pengarang.view.form</field>
+            <field name="model">pengarang</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="image" widget="image" width="150" height="210"/>
+                            <field name="name"/>
+                            <field name="jenis_kel"/>
+                            <field name="tgl_lahir"/>
+                            <field name="tmp_lahir"/>
+                            <field name="agama"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- pengarang action window -->
+        <record id="pengarang_action" model="ir.actions.act_window">
+            <field name="name">Nama Pengarang</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pengarang</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+<!-- This Menu Item must have a parent and an action -->
+<menuitem id="pengarang_menu_act" name="Data pengarang" parent="master_menu_categ" action="pengarang_action" sequence="20"/> 
+   </data>
+</odoo>

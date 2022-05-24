@@ -1,0 +1,27 @@
+<odoo noupdate="0">
+    <record id="sequence_idea_idea_seq" model="ir.sequence">
+        <field name="name">Idea sequence</field>
+        <field name="implementation">standard</field>
+        <field name="code">idea.idea</field>
+        <field name="prefix">IDEA/%(range_year)s/-</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+        <field eval="True" name="use_date_range"/>
+    </record>
+
+    <record id="sequence_idea_voting_seq" model="ir.sequence">
+        <field name="name">Voting sequence</field>
+        <field name="implementation">standard</field>
+        <field name="code">idea.voting</field>
+        <field name="prefix">Voting/%(year)s/-</field>
+        <field eval="3" name="padding"/>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="False" name="company_id"/>
+    </record>
+
+</odoo>
+
+<!--no update = 0, digunakan agar ketika rerun lagi number_nextnya gak balek satu lagi, diawal no update dibuat 0 jadi masih bisa update setelah itu dijadikan 1 biar gak update selanjutnya kalau di rerun-->

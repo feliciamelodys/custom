@@ -1,0 +1,9 @@
+<odoo>
+    <record id="perpus_user" model="res.groups">
+        <field name="name">Perpus User</field>
+    </record>
+
+    <record id="perpus_manager" model="res.groups">
+        <field name="name">Perpus Manager</field>
+    </record>
+</odoo>

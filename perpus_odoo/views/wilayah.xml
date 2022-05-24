@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- ref_propinsi tree view -->
+        <record id="ref_propinsi_view_tree" model="ir.ui.view">
+            <field name="name">ref_propinsi.view.tree</field>
+            <field name="model">ref_propinsi</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="singkatan"/>
+                    <field name="deskripsi"/>
+                </tree>
+            </field>
+        </record>
+        <!-- ref_propinsi form view -->
+        <record id="ref_propinsi_view_form" model="ir.ui.view">
+            <field name="name">ref_propinsi.view.form</field>
+            <field name="model">ref_propinsi</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="singkatan"/>
+                            <field name="deskripsi"/>
+                        </group>
+                        <group>
+                          <field name="kota_ids">
+                        <tree>
+                          <field name="name"/>
+                          <field name="singkatan"/>
+                        </tree>
+                        </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- ref_propinsi action window -->
+        <record id="ref_propinsi_action" model="ir.actions.act_window">
+            <field name="name">Data Propinsi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ref_propinsi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- Data Kota -->
+
+        <!-- ref_kota tree view -->
+        <record id="ref_kota_view_tree" model="ir.ui.view">
+            <field name="name">ref_kota.view.tree</field>
+            <field name="model">ref_kota</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="propinsi_id"/>
+                    <field name="singkatan"/>
+                    <field name="deskripsi"/>
+                    
+                </tree>
+            </field>
+        </record>
+        <!-- ref_kota form view -->
+        <record id="ref_kota_view_form" model="ir.ui.view">
+            <field name="name">ref_kota.view.form</field>
+            <field name="model">ref_kota</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="singkatan"/>
+                            <field name="propinsi_id"/>
+                            <field name="deskripsi"/>                         
+                        </group>
+                        <group>
+                          <field name="kecamatan_ids">
+                        <tree>
+                          <field name="name"/>
+                          <field name="singkatan"/>
+                        </tree>
+                        </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- ref_kota action window -->
+        <record id="ref_kota_action" model="ir.actions.act_window">
+            <field name="name">Data Kota</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ref_kota</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+        <!-- Data Kecamatan -->
+
+        <!-- ref_kecamatan tree view -->
+        <record id="ref_kecamatan_view_tree" model="ir.ui.view">
+            <field name="name">ref_kecamatan.view.tree</field>
+            <field name="model">ref_kecamatan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="singkatan"/>
+                    <field name="kota_id"/>
+                    <field name="deskripsi"/>
+                </tree>
+            </field>
+        </record>
+        <!-- ref_kecamatan form view -->
+        <record id="ref_kecamatan_view_form" model="ir.ui.view">
+            <field name="name">ref_kecamatan.view.form</field>
+            <field name="model">ref_kecamatan</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="singkatan"/>
+                            <field name="kota_id"/>
+                            <field name="deskripsi"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- ref_kecamatan action window -->
+        <record id="ref_kecamatan_action" model="ir.actions.act_window">
+            <field name="name">Data Kecamatan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ref_kecamatan</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+        <!-- menu untuk configurasi -->
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="konfig_menu_categ" name="konfigurasi" parent="perpus_menu_root" sequence="30"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="propinsi_menu_act" name="Data propinsi" parent="konfig_menu_categ" action="ref_propinsi_action" sequence="10"/>
+        <menuitem id="kota_menu_act" name="Data kota" parent="konfig_menu_categ" action="ref_kota_action" sequence="20"/>
+        <menuitem id="kecamatan_menu_act" name="Data kecamatan" parent="konfig_menu_categ" action="ref_kecamatan_action" sequence="30"/>
+    </data>
+</odoo>

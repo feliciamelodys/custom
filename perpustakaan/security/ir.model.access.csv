@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_perpus_buku_user,Access Buku for User,model_perpus_buku,perpus_user,1,1,1,0
+access_perpus_buku_manager,Access Buku for Manager,model_perpus_buku,perpus_manager,1,1,1,1
+access_perpus_kategori_user,Access Kategori for User,model_perpus_kategori,perpus_user,1,1,1,0
+access_perpus_kategori_manager,Access Kategori for Manager,model_perpus_kategori,perpus_manager,1,1,1,1
+access_perpus_kartu_user,Access Kartu Perpustakaan for User,model_perpus_kartu,perpus_user,1,1,1,0
+access_perpus_kartu_manager,Access Kartu Perpustakaan for Manager,model_perpus_kartu,perpus_manager,1,1,1,1
+access_perpus_kartu_line_user,Access Kartu Perpustakaan Line for User,model_perpus_kartu_line,perpus_user,1,1,1,0
+access_perpus_kartu_line_manager,Access Kartu Perpustakaan Line for Manager,model_perpus_kartu_line,perpus_manager,1,1,1,1

@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem id="perpus_root" name="Perpustakaan"/>
+    <menuitem id="perpus_menu" name="Perpustakaan" parent="perpus_root" sequence="40"/>
+    <menuitem id="perpus_buku" name="Buku" parent="perpus_menu" sequence="10" action="perpus_buku_action"/>
+    <menuitem id="perpus_kategori" name="Kategori" parent="perpus_menu" sequence="20" action="perpus_kategori_action"/>
+    <menuitem id="perpus_person" name="Person" parent="perpus_menu" sequence="30" action="account.res_partner_action_customer"/>
+    <menuitem id="perpus_kartu" name="Kartu Perpustakaan" parent="perpus_menu" sequence="50" action="perpus_kartu_action"/>
+</odoo>

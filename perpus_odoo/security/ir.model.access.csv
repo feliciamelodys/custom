@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_buku,access_buku,model_buku,,1,1,1,1
+access_pengarang,access_pengarang,model_pengarang,,1,1,1,1
+access_categori,access_categori,model_categori,,1,1,1,1
+access_lokasi,access_lokasi,model_lokasi,,1,1,1,1
+access_anggota,access_anggota,model_anggota,,1,1,1,1
+access_propinsi,access_propinsi,model_ref_propinsi,,1,1,1,1
+access_kota,access_kota,model_ref_kota,,1,1,1,1
+access_kecamatan,access_kecamatan,model_ref_kecamatan,,1,1,1,1
+access_kartu_perpustakaan,access_kartu_perpustakaan,model_kartu_perpustakaan,,1,1,1,1
+access_kartu_perpustakaan_line,acces_kartu_perpustakaan_line,model_kartu_perpustakaan_line,,1,1,1,1
+access_anggota_perpus,access_anggota_perpus,model_kartu_perpustakaan,,1,0,0,0
+access_anggota_perpus_line,acces_anggota_perpus_line,model_kartu_perpustakaan_line,,1,0,0,0
+access_petugas_perpus,access_petugas_perpus,model_kartu_perpustakaan,,1,1,1,1
+access_petugas_perpus_line,access_petugas_perpus_line,model_kartu_perpustakaan_line,,1,1,1,1
+

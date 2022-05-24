@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- buku kanban view -->
+        <record model="ir.ui.view" id="buku_kanban_view">
+            <field name="name">buku.kanban</field>
+            <field name="model">buku</field>
+            <field name="arch" type="xml">
+                <kanban class="o_buku_kanban">
+                    <field name="id"/>
+                    <field name="image" widget="image"/>
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_buku_kanban">
+                                <t t-if="record.image_small">
+                                </t>
+                                 <t t-else="">
+                                 <div class="o_kanban_image_fill_left d-none d-md-block" padding="10"> 
+                                     
+                                   <field name="image" widget="image" class="oe_avatar" width="100" height="140"/>
+                                 </div>
+                          </t>
+                                <div class="oe_kanban_details">
+                                   <strong class="o_kanban_record_title">
+                                   <h3>
+                                      <b><field name="name"/></b>
+                                      </h3>
+                                   </strong>
+                                  <div class="o_kanban_tags_section">
+                                    <ul>
+                                        <li t-if="record.pengarang"><h5><i><field name="pengarang"/></i></h5></li>
+                                        <li t-if="record.categori"><h9><field name="categori"/></h9></li>
+                                    <p>    
+                                        <li align="right" t-if="record.state"><field name="state" widget="kanban_label_selection" options="{'classes': {'available': 'success', 'rent': 'danger'}}"/></li>
+                                    </p>
+                                    </ul>
+                                </div>
+                            </div>
+                          </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- buku tree view -->
+        <record id="buku_view_tree" model="ir.ui.view">
+            <field name="name">buku.view.tree</field>
+            <field name="model">buku</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="image" widget="many2one_avatar_user"/>
+                    <field name="pengarang"/>
+                    <field name="categori" widget="checkbox"/>
+                    <field name="lokasi"/>
+                    <field name="deskripsi"/>   
+                    <field name="state"/>                 
+                    <field name="jumlah"/>
+                </tree>
+            </field>
+        </record>
+        <!-- buku form view -->
+        <record id="buku_view_form" model="ir.ui.view">
+            <field name="name">buku.view.form</field>
+            <field name="model">buku</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <img src = 'views/pngwing.com.png'></img>
+                        <group string="Informasi Buku ">
+                            <field name="image" widget="image" width="150" height="210"/> 
+                        </group>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="pengarang"/>
+                            <field name="jumlah"/>
+                            <field name="categori" widget="checkbox"/>
+                            <field name="lokasi"/>
+                        </group>
+                        <group>
+                        <field name="deskripsi"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+            <!-- buku search view -->
+            <record id="buku_view_search" model="ir.ui.view">
+                <field name="name">buku.view.search</field>
+                <field name="model">buku</field>
+                <field name="arch" type="xml">
+                    <search string="Search Description">
+                        <!-- Add your fields here -->
+                        <filter name="filter_judul" string="Judul" domain="[('name', '=', '')]" />
+                        <filter name="filter_pengarang" string="Pengarang" domain="[('pengarang', '=', '')]" />
+                        <field name ="name" select="True"/>
+                        <field name ="pengarang" select="True"/>                       
+                        <group string="Group by..">
+                             <filter name="group_by_pengarang" string="Pengarang" domain="[]" context="{'group_by': 'pengarang'}" />
+                        </group>
+                    </search>
+                </field>
+            </record>
+        
+        <!-- buku action window -->
+        <record id="buku_action" model="ir.actions.act_window">
+            <field name="name">Daftar Buku</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">buku</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+        <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="perpus_menu_root" name="Perpustakaan" sequence="10"/>
+        <!-- This Menu Item Must have a parent -->
+        <menuitem id="master_menu_categ" name="Master" parent="perpus_menu_root" sequence="10"/>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="buku_menu_act" name="Data buku" parent="master_menu_categ" action="buku_action" sequence="10"/>
+    </data>
+</odoo>

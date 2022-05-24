@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- Add you code here -->
+        <!-- kartu_perpustakaan tree view -->
+        <record id="kartu_perpustakan_view_tree" model="ir.ui.view">
+            <field name="name">kartu_perpustakaan.view.tree</field>
+            <field name="model">kartu_perpustakaan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="anggota_id"/>
+                    <field name="state"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+<!-- kartu_perpustakaan form view -->
+<record id="kartu_perpustakaan_view_form" model="ir.ui.view">
+    <field name="name">kartu_perpustaka.view.form</field>
+    <field name="model">kartu_perpustakaan</field>
+    <field name="arch" type="xml">
+        <form string="kartu perpustakaan">
+           <header>
+                <button name="kartu_confirm" type="object" states="draft" string="Confirm" class="oe_highlight"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+            </header>
+            <sheet>
+                <group string="Data Anggota" col="4" cosplan="4">
+                    <!-- Add your fields here -->
+                    <field name="name"/>
+                    <field name="anggota_id"/>
+                </group>
+                <notebook>
+                    <page string="Books Line">
+                        <field colspan="4" name="kartu_lines" nolabel="1" widget="one2many_list">
+                            <tree string="" editable="top">
+                                <field name="buku"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="duration"/>
+                                <field name="state"/>
+                                <button name="pinjaman_confirm" type="object" states="draft" string="Confirm" icon="fa-check-square"/>
+                                <button name="pinjaman_done" type="object" states="rent" string="Done" icon="fa-mail-reply"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <group string="Notes">
+                    <field name="note" colspan="4" nolabel="1"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+ 
+<!-- kartu_perpustakaan action window -->
+<record id="kartu_perpustakaan_action" model="ir.actions.act_window">
+    <field name="name">kartu perpustakaan</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">kartu_perpustakaan</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+        </p><p>
+            <!-- More details about what a user can do with this object will be OK --> 
+        </p>
+    </field>
+</record>
+ 
+<record id="seq_kartu_perpustakaan_new" model="ir.sequence">
+    <field name="name">Kartu Perpustakaan</field>
+    <field name="code">kartu_perpustakaan</field>
+    <field name="prefix">KP/%(y)s/%(month)s/</field>
+    <field name="padding">5</field>
+</record>
+
+<!-- #################### -->
+<!-- MENU DAFTAR PINJAMAN -->
+<!-- #################### -->
+
+
+<record id="kartu_perpustakaan_line_filter" model="ir.ui.view">
+    <field name="name">kartu_perpustakaan_line.filter.search</field>
+    <field name="model">kartu_perpustakaan_line</field>
+    <field name="arch" type="xml">
+        <search string="Search Daftar Pinjaman">
+            <field name="anggota_id" select="True"/>
+            <field name="state" select="True"/>
+            <group expand="1" string="Group By..">
+                <filter string="Member" name="group_by_anggota_id" context="{'group_by': 'anggota_id'}"/>
+                <filter string="State" name="group_by_state" context="{'group_by': 'state'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+ 
+<record id="kartu_perpustakaan_line_tree" model="ir.ui.view">
+    <field name="name">kartu_perpustakaan_line.tree</field>
+    <field name="model">kartu_perpustakaan_line</field>
+    <field name="arch" type="xml">
+        <tree string="Daftar Pinjaman" create="false" decoration-info="state == 'draft'" decoration-danger="state == 'rent'" decoration-muted="state == 'return'">
+            <field name="nama_kartu"/>
+            <field name="anggota_id"/>
+            <field name="buku"/>
+            <field name="start_date"/>
+            <field name="end_date"/>
+            <field name="duration"/>
+            <field name="state"/>
+        </tree>
+    </field>
+</record>
+            <!-- ################# -->
+            <!-- MENU BUKU TERSEDIA -->
+            <!-- ################# -->
+
+            <record id="buku_sedia_action" model="ir.actions.act_window">
+                <field name="name">Buku Tersedia</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">buku</field>
+                <field name="view_mode">tree</field>
+                <field name="domain">[('state', '=', 'available')]</field>
+            </record>
+
+            
+
+            
+
+
+            <!-- ################# -->
+            <!-- MENU BUKU TERSEWA -->
+            <!-- ################# -->
+
+            <record id="buku_sewa_action" model="ir.actions.act_window">
+                <field name="name">Buku Tersewa</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">buku</field>
+                <field name="view_mode">tree,form</field>
+                <field name="domain">[('state', '=', 'rent')]</field>
+            </record>
+
+            
+
+ 
+<record model="ir.actions.act_window" id="daftar_pinjaman_action">
+    <field name="name">Daftar Pinjaman</field>
+    <field name="res_model">kartu_perpustakaan_line</field>
+    <field name="view_mode">tree</field>
+    <field name="context">{'search_default_state': 'rent'}</field>
+</record>
+
+<menuitem id="submenu_books_kartuu" name="pinjaman" parent="perpus_menu_root" sequence="40"/>
+<menuitem id="submenu_books_daftar_pinjaman" name="Daftar Pinjaman" parent="submenu_books_kartuu" action="daftar_pinjaman_action"/>
+<menuitem id="submenu_books_kartu" name="Kartu perpustakaan" parent="submenu_books_kartuu" action="kartu_perpustakaan_action"/>   
+<menuitem id="submenu_books_tersedia" name="Buku Tersedia" parent="submenu_books_kartuu" action="buku_sedia_action"/>   
+<menuitem id="submenu_books_tersewa" name="Buku Tersewa" parent="submenu_books_kartuu" action="buku_sewa_action"/>   
+
+
+
+    </data>
+</odoo>

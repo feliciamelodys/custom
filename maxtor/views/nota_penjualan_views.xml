@@ -1,0 +1,88 @@
+<odoo>
+<!--    Nota Penjualan Tree View-->
+    <record id="nota_penjualan_view_tree" model="ir.ui.view">
+        <field name="name">Nota Penjualan Tree</field>
+        <field name="model">maxtor.penjualan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="total"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="nota_penjualan_view_search" model="ir.ui.view">
+        <field name="name">Nota Penjualan Search</field>
+        <field name="model">maxtor.penjualan</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="total"/>
+                <field name="state"/>
+                <filter string="Draft" name="draft_filter" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirm" name="confirm_filter" domain="[('state', '=', 'confirm')]"/>
+                <filter string="Paid" name="paid_filter" domain="[('state', '=', 'paid')]"/>
+            </search>
+        </field>
+    </record>
+
+<!--    Nota Penjualan Form View -->
+    <record id="nota_penjualan_view_form" model="ir.ui.view">
+        <field name="name">Nota Penjualan Form</field>
+        <field name="model">maxtor.penjualan</field>
+        <field name="arch" type="xml">
+            <form string="Nota Penjualan">
+               <header>
+                    <button string="Confirm" type="object" name="action_confirm" states="draft" class="btn-primary"/>
+                    <button string="Paid" type="object" name="action_paid" states="confirm" class="btn-primary"/>
+                    <button string="Cancel" type="object" name="action_cancel" states="confirm" class="btn-primary"/>
+                    <field name="state" widget="statusbar"/>
+               </header>
+                <sheet>
+                    <group col="4" cosplan="4">
+                        <field name="name"/>
+                        <field name="customer_id"/>
+                        <field name="date"/>
+                    </group>
+                    <notebook>
+                        <page string="Detail Peminjaman">
+                            <field colspan="4" name="line_ids" nolabel="1" widget="one2many_list" options="{'no_open': True}">
+                                <tree string="" editable="bottom">
+                                    <field name="product_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="harga"/>
+                                    <field name="disc1"/>
+                                    <field name="disc2"/>
+                                    <field name="jumlah"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group colspan="4" class="oe_right">
+                        <group>
+                            <field name="sub_total"/>
+                            <field name="disc_header"/>
+                            <field name="total"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="note" colspan="4" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    Nota Penjualan Action-->
+    <record id="maxtor_penjualan_action" model="ir.actions.act_window">
+        <field name="name">Nota Penjualan</field>
+        <field name="res_model">maxtor.penjualan</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="context">{'search_default_state':'paid'}</field>-->
+    </record>
+
+</odoo>

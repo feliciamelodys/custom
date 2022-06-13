@@ -1,0 +1,10 @@
+<odoo>
+    <record id="maxtor_user" model="res.groups">
+        <field name="name">Maxtor User</field>
+    </record>
+
+    <record id="maxtor_manager" model="res.groups">
+        <field name="name">Maxtor Manager</field>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

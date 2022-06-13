@@ -1,0 +1,44 @@
+<odoo>
+    Menambahkan field pada form res.partner jadi person inherit dari res.partner tapi ditambah i fieldnya
+    <record id="maxtor_res_partner_view_form" model="ir.ui.view">
+        <field name="name">Maxtor Res Partner Form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.partner_view_buttons"/>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <field name="website" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="category_id" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="vat" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+             <field name="company_type" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+<!--            <xpath expr="//div[@name='button_box']" position="replace"/>-->
+            <xpath expr="//button[@name='action_view_partner_invoices']" position="replace"/>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object" name="maxtor_penjualan_action" class="oe_stat_button" icon="fa-cubes">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value" widget="statinfo">
+                            <field name="name" widget="statinfo" nolabel="1" class="mr4"/>
+<!--                            <field name="uom_name"/>-->
+                        </span>
+                        <span class="o_stat_text">Transaction History</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+
+    </record>
+
+    <record id="maxtor_customer_action" model="ir.actions.act_window">
+        <field name="name">Customer</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

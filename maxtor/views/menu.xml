@@ -1,0 +1,13 @@
+<odoo>
+    <menuitem id="maxtor_root" name="Maxtor"/>
+        <menuitem id="maxtor_master" name="Master" parent="maxtor_root" sequence="10"/>
+            <menuitem id="maxtor_merk" name="Merk" parent="maxtor_master" sequence="10" action="maxtor_merk_action"/>
+            <menuitem id="maxtor_nama_barang" name="Nama Barang" parent="maxtor_master" sequence="20" action="maxtor_nama_barang_action"/>
+            <menuitem id="maxtor_product" name="Product" parent="maxtor_master" sequence="30" action="maxtor_product_action"/>
+            <menuitem id="maxtor_customer" name="Customer" parent="maxtor_master" sequence="40" action="account.res_partner_action_customer"/>
+        <menuitem id="maxtor_transaksi" name="Transaction" parent="maxtor_root" sequence="20"/>
+            <menuitem id="maxtor_penjualan" name="Penjualan" parent="maxtor_transaksi" sequence="50" action="maxtor_penjualan_action"/>
+            <menuitem id="maxtor_retur" name="Retur Penjualan" parent="maxtor_transaksi" sequence="60" action="maxtor_retur_action"/>
+        <menuitem id="maxtor_report" name="Report" parent="maxtor_root" sequence="30"/>
+            <menuitem id="maxtor_report_penjualan" name="Penjualan Report" parent="maxtor_report" sequence="10" action="maxtor_penjualan_report_action"/>
+</odoo>

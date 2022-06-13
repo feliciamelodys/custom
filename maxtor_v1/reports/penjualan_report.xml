@@ -1,0 +1,94 @@
+<odoo>
+    <record id="maxtor_penjualan_report_view_form" model="ir.ui.view">
+        <field name="name">Penjualan Report Wizard</field>
+        <field name="model">maxtor.penjualan.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print" string="Print" type="object" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="maxtor_penjualan_report_action" model="ir.actions.act_window">
+        <field name="name">Penjualan Report</field>
+        <field name="res_model">maxtor.penjualan.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+<!--    **** REPORT ****-->
+<!--    <report id="penjualan_report"-->
+<!--            model="maxtor.penjualan.report.wizard"-->
+<!--            string="Penjualan Report"-->
+<!--            report_type="qweb-html"-->
+<!--            name="maxtor.penjualan_report_view"-->
+<!--            menu="False"/>-->
+
+    <record id="penjualan_report" model="ir.actions.report">
+        <field name="name">Penjualan Report</field>
+        <field name="model">maxtor.penjualan.report.wizard</field>
+<!--            <field name="binding_model_id" ref="model_account_move"/>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">maxtor.penjualan_report_view</field>
+<!--        <field name="report_file">maxtor.penjualan_report_view</field>-->
+<!--            <field name="attachment">'original_vendor_bill.pdf'</field>-->
+<!--            <field name="attachment_use">True</field>-->
+<!--            <field name="binding_view_types">list</field>-->
+    </record>
+
+<!--            return {-->
+<!--            'doc_ids': data['ids'],-->
+<!--            'doc_model': data['model'],-->
+<!--            'date_start': date_start,-->
+<!--            'date_end': date_end,-->
+<!--            'docs': docs,-->
+
+<!--    *** TAMPILAN PENJUALAN REPORT ***-->
+    <template id="maxtor.penjualan_report_view">
+        <t t-call="web.html_container">
+            <h3 class="text-center">Laporan Penjualan</h3>
+            <h4 class="text-center">
+                <strong>Customer</strong>: <t t-esc="customer_name"/><br/>
+                <strong>From</strong>: <t t-esc="date_start"/><br/>
+                <strong>To</strong>: <t t-esc="date_end"/>
+            </h4>
+            <table class="table table-condensed table-bordered" style="width: 100%">
+                <thead>
+                    <th class="text-center" style="width: 70%">Nomor</th>
+                    <th class="text-center" style="width: 15%">Tanggal</th>
+                    <th class="text-center" style="width: 15%">Total</th>
+                </thead>
+                <tbody>
+                    <t t-foreach="docs" t-as="doc">
+                        <tr>
+                            <td>
+                                <span t-esc="doc['name']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="doc['date']"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-esc="doc['total']"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </t>
+    </template>
+</odoo>

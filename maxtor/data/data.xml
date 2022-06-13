@@ -1,0 +1,170 @@
+<odoo>
+<!--    Master Merk-->
+    <record id="merk1" model="maxtor.merk">
+        <field name="name">Merk 1</field>
+    </record>
+    <record id="merk2" model="maxtor.merk">
+        <field name="name">Merk 2</field>
+    </record>
+    <record id="merk3" model="maxtor.merk">
+       <field name="name">Merk 3</field>
+    </record>
+   <record id="merk4" model="maxtor.merk">
+       <field name="name">Merk 4</field>
+   </record>
+   <record id="merk5" model="maxtor.merk">
+       <field name="name">Merk 5</field>
+   </record>
+   <record id="merk6" model="maxtor.merk">
+       <field name="name">Merk 6</field>
+   </record>
+   <record id="merk7" model="maxtor.merk">
+       <field name="name">Merk 7</field>
+   </record>
+   <record id="merk8" model="maxtor.merk">
+       <field name="name">Merk 8</field>
+   </record>
+   <record id="merk9" model="maxtor.merk">
+       <field name="name">Merk 9</field>
+   </record>
+   <record id="merk10" model="maxtor.merk">
+       <field name="name">Merk 10</field>
+   </record>
+
+
+<!--    Master Nama Barang-->
+    <record id="nama_barang1" model="maxtor.nama.barang">
+        <field name="name">Barang 1</field>
+    </record>
+    <record id="nama_barang2" model="maxtor.nama.barang">
+        <field name="name">Barang 2</field>
+    </record>
+    <record id="nama_barang3" model="maxtor.nama.barang">
+        <field name="name">Barang 3</field>
+    </record>
+    <record id="nama_barang4" model="maxtor.nama.barang">
+        <field name="name">Barang 4</field>
+    </record>
+    <record id="nama_barang5" model="maxtor.nama.barang">
+        <field name="name">Barang 5</field>
+    </record>
+    <record id="nama_barang6" model="maxtor.nama.barang">
+        <field name="name">Barang 6</field>
+    </record>
+    <record id="nama_barang7" model="maxtor.nama.barang">
+        <field name="name">Barang 7</field>
+    </record>
+    <record id="nama_barang8" model="maxtor.nama.barang">
+        <field name="name">Barang 8</field>
+    </record>
+    <record id="nama_barang9" model="maxtor.nama.barang">
+        <field name="name">Barang 9</field>
+    </record>
+    <record id="nama_barang10" model="maxtor.nama.barang">
+       <field name="name">Barang 10</field>
+    </record>
+
+<!--    Master Customer-->
+    <record id="customer1" model="res.partner">
+        <field name="name">Customer 1</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer2" model="res.partner">
+        <field name="name">Customer 2</field>
+        <field name="customer_rank">1</field>
+    </record>
+     <record id="customer3" model="res.partner">
+        <field name="name">Customer 3</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer4" model="res.partner">
+        <field name="name">Customer 4</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer5" model="res.partner">
+        <field name="name">Customer 5</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer6" model="res.partner">
+        <field name="name">Customer 6</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer7" model="res.partner">
+        <field name="name">Customer 7</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer8" model="res.partner">
+        <field name="name">Customer 8</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer9" model="res.partner">
+        <field name="name">Customer 9</field>
+        <field name="customer_rank">1</field>
+    </record>
+    <record id="customer10" model="res.partner">
+        <field name="name">Customer 10</field>
+        <field name="customer_rank">1</field>
+    </record>
+
+<!-- &lt;!&ndash;    Master Product&ndash;&gt; -->
+   <record id="product1" model="product.template">
+       <field name="name">Nama Barang 1 Merk 1</field>
+       <field name="merk_id" ref="merk1"/>
+       <field name="nama_barang_id" ref="nama_barang1"/>
+       <field name="list_price">10_000</field>
+   </record>
+   <record id="product2" model="product.template">
+       <field name="name">Nama Barang 2 Merk 2</field>
+       <field name="merk_id" ref="merk2"/>
+       <field name="nama_barang_id" ref="nama_barang2"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product3" model="product.template">
+       <field name="name">Nama Barang 3 Merk 3</field>
+       <field name="merk_id" ref="merk3"/>
+       <field name="nama_barang_id" ref="nama_barang3"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product4" model="product.template">
+       <field name="name">Nama Barang 4 Merk 4</field>
+       <field name="merk_id" ref="merk4"/>
+       <field name="nama_barang_id" ref="nama_barang4"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product5" model="product.template">
+       <field name="name">Nama Barang 5 Merk 5</field>
+       <field name="merk_id" ref="merk5"/>
+       <field name="nama_barang_id" ref="nama_barang5"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product6" model="product.template">
+       <field name="name">Nama Barang 6 Merk 6</field>
+       <field name="merk_id" ref="merk6"/>
+       <field name="nama_barang_id" ref="nama_barang6"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product7" model="product.template">
+       <field name="name">Nama Barang 7 Merk 7</field>
+       <field name="merk_id" ref="merk7"/>
+       <field name="nama_barang_id" ref="nama_barang7"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product8" model="product.template">
+       <field name="name">Nama Barang 8 Merk 8</field>
+       <field name="merk_id" ref="merk8"/>
+       <field name="nama_barang_id" ref="nama_barang8"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product9" model="product.template">
+       <field name="name">Nama Barang 9 Merk 9</field>
+       <field name="merk_id" ref="merk9"/>
+       <field name="nama_barang_id" ref="nama_barang9"/>
+       <field name="list_price">20_000</field>
+   </record>
+   <record id="product10" model="product.template">
+       <field name="name">Nama Barang 10 Merk 10</field>
+       <field name="merk_id" ref="merk10"/>
+       <field name="nama_barang_id" ref="nama_barang10"/>
+       <field name="list_price">20_000</field>
+   </record>
+</odoo>

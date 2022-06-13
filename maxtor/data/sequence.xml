@@ -1,0 +1,24 @@
+<odoo>
+    <record id="product_barcode_sequence" model="ir.sequence">
+        <field name="name">Product Barcode</field>
+        <field name="implementation">standard</field>
+        <field name="code">product.barcode</field>
+        <field name="padding">8</field>
+    </record>
+
+    <record id="nota_penjualan_sequence" model="ir.sequence">
+        <field name="name">Nota Penjualan</field>
+        <field name="implementation">standard</field>
+        <field name="code">maxtor.penjualan</field>
+        <field name="prefix">INV-%(y)s%(month)s-</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="retur_penjualan_sequence" model="ir.sequence">
+        <field name="name">Retur Penjualan</field>
+        <field name="implementation">standard</field>
+        <field name="code">maxtor.retur</field>
+        <field name="prefix">RTR-%(y)s%(month)s-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

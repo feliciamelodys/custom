@@ -1,0 +1,47 @@
+<odoo>
+<!--    Form-->
+    <record id="maxtor_merk_view_form" model="ir.ui.view">
+        <field name="name">Merk Form</field>
+        <field name="model">maxtor.merk</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                            <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    Tree-->
+    <record id="maxtor_merk_view_tree" model="ir.ui.view">
+        <field name="name">Merk Tree</field>
+        <field name="model">maxtor.merk</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+<!--    Search-->
+    <record id="maxtor_merk_view_search" model="ir.ui.view">
+        <field name="name">Merk Search</field>
+        <field name="model">maxtor.merk</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+
+            </search>
+        </field>
+    </record>
+
+<!--    Action-->
+    <record id="maxtor_merk_action" model="ir.actions.act_window">
+        <field name="name">Merk</field>
+        <field name="res_model">maxtor.merk</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

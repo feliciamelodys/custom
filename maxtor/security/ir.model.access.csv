@@ -1,0 +1,15 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_maxtor_merk_user,Access Merk for User,model_maxtor_merk,maxtor_user,1,1,1,0
+access_maxtor_merk_manager,Access Merk for Manager,model_maxtor_merk,maxtor_manager,1,1,1,1
+access_maxtor_nama_barang_user,Access Nama Barang for User,model_maxtor_nama_barang,maxtor_user,1,1,1,0
+access_maxtor_nama_barang_manager,Access Nama Barang for Manager,model_maxtor_nama_barang,maxtor_manager,1,1,1,1
+access_maxtor_penjualan_user,Access Penjualan for User,model_maxtor_penjualan,maxtor_user,1,1,1,0
+access_maxtor_penjualan_manager,Access Penjualan for Manager,model_maxtor_penjualan,maxtor_manager,1,1,1,1
+access_maxtor_penjualan_line_user,Access Penjualan Line for User,model_maxtor_penjualan_line,maxtor_user,1,1,1,0
+access_maxtor_penjualan_line_manager,Access Penjualan Line for Manager,model_maxtor_penjualan_line,maxtor_manager,1,1,1,1
+access_maxtor_retur_user,Access Retur for User,model_maxtor_retur,maxtor_user,1,1,1,0
+access_maxtor_retur_manager,Access Retur for Manager,model_maxtor_retur,maxtor_manager,1,1,1,1
+access_maxtor_retur_line_user,Access Retur Line for User,model_maxtor_retur_line,maxtor_user,1,1,1,0
+access_maxtor_retur_line_manager,Access Retur Line for Manager,model_maxtor_retur_line,maxtor_manager,1,1,1,1
+access_maxtor_penjualan_report_wizard_user,Access Penjualan Report Wizard for User,model_maxtor_penjualan_report_wizard,maxtor_user,1,1,1,1
+access_report_maxtor_penjualan_report_view_user,Access Penjualan Report View for User,model_report_maxtor_penjualan_report_view,maxtor_user,1,1,1,1

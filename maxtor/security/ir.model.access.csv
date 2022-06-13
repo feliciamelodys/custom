@@ -13,3 +13,4 @@ access_maxtor_retur_line_user,Access Retur Line for User,model_maxtor_retur_line
 access_maxtor_retur_line_manager,Access Retur Line for Manager,model_maxtor_retur_line,maxtor_manager,1,1,1,1
 access_maxtor_penjualan_report_wizard_user,Access Penjualan Report Wizard for User,model_maxtor_penjualan_report_wizard,maxtor_user,1,1,1,1
 access_report_maxtor_penjualan_report_view_user,Access Penjualan Report View for User,model_report_maxtor_penjualan_report_view,maxtor_user,1,1,1,1
+access_maxtor_product_update_stock_wizard,maxtor.product.update.stock.wizard,model_maxtor_product_update_stock_wizard,maxtor_manager,1,1,1,1

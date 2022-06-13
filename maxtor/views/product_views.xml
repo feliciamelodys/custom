@@ -9,7 +9,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <field name="show_on_hand_qty_status_button" invisible="1"/>
-                        <button type="object" name="dummy" class="oe_stat_button" icon="fa-cubes">
+                        <button type="object" name="edit_stock" class="oe_stat_button" icon="fa-cubes">
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value" widget="statinfo">
                                     <field name="stock" widget="statinfo" nolabel="1" class="mr4"/>
@@ -43,13 +43,14 @@
         </field>
     </record>
 
+
+
 <!--    Tree-->
     <record id="maxtor_product_view_tree" model="ir.ui.view">
         <field name="name">Product Tree</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_tree_view"/>
         <field name="arch" type="xml">
-<!--            <tree>-->
                 <field name="list_price" position="after">
                     <field name="stock"/>
                 </field>
@@ -62,47 +63,36 @@
                 </field>
                 <field name="qty_available" position="replace"/>
                 <field name="virtual_available" position="replace"/>
-
-<!--            </tree>-->
         </field>
     </record>
-
-<!--    Search-->
-<!--    <record id="maxtor_merk_view_search" model="ir.ui.view">-->
-<!--        <field name="name">Merk Search</field>-->
-<!--        <field name="model">maxtor.merk</field>-->
-<!--        <field name="inherit_id" ref=""/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <search>-->
-<!--                <field name="name"/>-->
-<!--            </search>-->
-<!--        </field>-->
-<!--    </record>-->
-
-
 
 <!--    Action-->
     <record id="maxtor_product_action" model="ir.actions.act_window">
         <field name="name">Product</field>
         <field name="res_model">product.template</field>
         <field name="context">{'default_detailed_type':'product'}</field>
-<!--        <field name="view_type">form</field>-->
         <field name="view_mode">tree,form</field>
-<!--        <field name="res_id" ref="maxtor_product_view_form"/>-->
     </record>
 
-<!--    <record id="child_action_window_tree" model="ir.actions.act_window.view">-->
-<!--            <field name="view_mode">tree</field>-->
-<!--            <field name="view_id" ref="maxtor_product_view_tree" />-->
-<!--            <field name="act_window_id" ref="maxtor_product_action" />-->
-<!--    </record>-->
-
-<!--    <record id="child_action_window_form" model="ir.actions.act_window.view">-->
-<!--           <field name="view_mode">form</field>-->
-<!--           <field name="view_id" ref="maxtor_product_view_form" />-->
-<!--           <field name="act_window_id" ref="maxtor_product_action" />-->
-<!--    </record>-->
-
-
-
+<!--    Form Update Stock Wizard-->
+    <record id="maxtor_product_update_stock_wizard" model="ir.ui.view">
+        <field name="name">Product Update Stock Wizard</field>
+        <field name="model">maxtor.product.update.stock.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" invisible="1"/>
+                            <field name="qty"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="update" string="Update" type="object" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>

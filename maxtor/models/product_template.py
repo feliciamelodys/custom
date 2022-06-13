@@ -6,7 +6,7 @@ class ProductTemplate(models.Model):
 
     nama_barang_id = fields.Many2one('maxtor.nama.barang', string="Nama")
     merk_id = fields.Many2one("maxtor.merk", string="Merk")
-    stock = fields.Integer("Stok Tersedia")
+    stock = fields.Float("Qty", digits='Discount')
 
     #Function untuk memberikan nama barang dimana nama barang didapat dari nama_barang + merk
     @api.onchange('nama_barang_id', 'merk_id')
@@ -21,5 +21,25 @@ class ProductTemplate(models.Model):
         vals['barcode'] = self.env['ir.sequence'].next_by_code('product.barcode')
         return super(ProductTemplate, self).create(vals)
 
-    def dummy(self):
-        pass
+    def edit_stock(self):
+        return {
+            'name': "Product Update Stock",
+            'type': 'ir.actions.act_window',
+            'res_model': 'maxtor.product.update.stock.wizard',
+            'context': {'default_product_id': self.id},
+            'view_mode': 'form',
+            'view_type': 'form',
+            'target': 'new',
+        }
+
+
+class ProductUpdateStock(models.TransientModel):
+    _name = 'maxtor.product.update.stock.wizard'
+
+    product_id = fields.Many2one('product.product', 'Product')
+    qty = fields.Float("Qty", digits='Discount')
+
+    def update(self):
+        for o in self:
+            p = self.env['product.product'].search([('id', '=', o.product_id.id)])
+            p.write({'stock': o.qty})

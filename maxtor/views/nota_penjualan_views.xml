@@ -53,6 +53,7 @@
                                 <tree string="" editable="bottom">
                                     <field name="product_id" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
                                     <field name="qty"/>
+                                    <field name="retur_qty" readonly="1"/>
                                     <field name="uom_id"/>
                                     <field name="harga"/>
                                     <field name="disc1"/>

@@ -1,9 +1,22 @@
 <odoo>
+<!--    Inherit dari account.view_partner_property_form untuk menghilangkan page Invoicing pada inherit res.partner-->
+    <record id="maxtor_res_partner_view_form2" model="ir.ui.view">
+        <field name="name">Maxtor Res Partner Form 2</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+           <page name="accounting" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </page>
+        </field>
+    </record>
     <!-- Menambahkan field pada form res.partner jadi person inherit dari res.partner tapi ditambah i fieldnya -->
     <record id="maxtor_res_partner_view_form" model="ir.ui.view">
         <field name="name">Maxtor Res Partner Form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.partner_view_buttons"/>
+<!--        <field name="inherit_id" ref="account.view_partner_property_form"/>-->
         <field name="priority" eval="1"/>
         <field name="arch" type="xml">
             <field name="website" position="attributes">
@@ -15,9 +28,15 @@
             <field name="vat" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
-             <field name="company_type" position="attributes">
+            <field name="company_type" position="attributes">
                 <attribute name="invisible">True</attribute>
             </field>
+            <page name="sales_purchases" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </page>
+            <page name="contact_addresses" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </page>
             <xpath expr="//button[@name='action_view_partner_invoices']" position="replace"/>
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button type="object" name="maxtor_penjualan_action" class="oe_stat_button" icon="fa-cubes">

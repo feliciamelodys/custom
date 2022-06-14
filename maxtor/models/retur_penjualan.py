@@ -19,6 +19,9 @@ class Retur(models.Model):
     line_ids = fields.One2many(comodel_name='maxtor.retur.line', inverse_name='retur_id', string='Detail',readonly=True,
                                   states={'draft': [('readonly', False)]})
     total = fields.Float('Total', compute='compute_total', store=True, readonly=True)
+    sub_total = fields.Integer('Sub Total', compute='compute_total', store=True, readonly=True)
+    disc_header = fields.Float(string='Disc. (%)', digits='Discount', readonly=True,
+                               states={'draft': [('readonly', False)]})
 
     # Function ketika klik confirm maka no retur penjualan akan otomatis terisi
     def action_confirm(self):
@@ -36,12 +39,23 @@ class Retur(models.Model):
     def update_stock(self, mode):
         # Update Stock
         for d in self.line_ids:
+            # Update Stock
             p = self.env['product.template'].search([('id','=',d.product_id.id)])
             if mode == 'add':
                 stock = p.stock + d.retur_qty
             else:
                 stock = p.stock - d.retur_qty
             p.write({'stock': stock})
+
+            # Update Nota Penjualan
+            p = self.env['maxtor.penjualan.line'].search([('penjualan_id','=',self.penjualan_id.id), ('product_id','=',d.product_id.id)])
+            if mode == 'add':
+                stock = p.retur_qty + d.retur_qty
+            else:
+                stock = p.retur_qty - d.retur_qty
+            p.write({'retur_qty': stock})
+
+
 
     #Function untuk mendapatkan invoice dari customer_id yang dipilih
     @api.onchange('customer_id')
@@ -53,7 +67,8 @@ class Retur(models.Model):
     @api.depends('line_ids.jumlah')
     def compute_total(self):
         for o in self:
-            o.total = sum(o.line_ids.mapped('jumlah'))
+            o.sub_total = sum(o.line_ids.mapped('jumlah'))
+            o.total = o.sub_total * (1 - (o.disc_header or 0.0) / 100.0)
 
     #Function untuk mendapatkan detail penjualan berdasarkan penjualan_id
     @api.onchange('penjualan_id')
@@ -62,19 +77,21 @@ class Retur(models.Model):
             o.line_ids = [(5, 0, 0)] #menghapus detail yang ada
             lines = []
             for l in o.penjualan_id.line_ids:
-                lines.append((0,0, {
-                    'retur_id': o.id,
-                    'penjualan_id': l.penjualan_id.id,
-                    'product_id': l.product_id.id,
-                    'harga': l.harga,
-                    'qty': l.qty,
-                    'retur_qty': l.qty,
-                    'uom_id': l.uom_id.id,
-                    'jumlah': l.jumlah,
-                    'disc1': l.disc1,
-                    'disc2': l.disc2
-                }))
+                if l.qty - l.retur_qty > 0:
+                    lines.append((0,0, {
+                        'retur_id': o.id,
+                        'penjualan_id': l.penjualan_id.id,
+                        'product_id': l.product_id.id,
+                        'harga': l.harga,
+                        'qty': l.qty - l.retur_qty,
+                        'retur_qty': l.qty - l.retur_qty,
+                        'uom_id': l.uom_id.id,
+                        'jumlah': l.jumlah,
+                        'disc1': l.disc1,
+                        'disc2': l.disc2
+                    }))
             o.line_ids = lines
+            o.disc_header = o.penjualan_id.disc_header
 
 
 class ReturLine(models.Model):

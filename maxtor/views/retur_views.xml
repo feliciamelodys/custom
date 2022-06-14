@@ -50,6 +50,8 @@
                     </notebook>
                     <group colspan="4" class="oe_right">
                         <group>
+                            <field name="sub_total"/>
+                            <field name="disc_header"/>
                             <field name="total"/>
                         </group>
                     </group>

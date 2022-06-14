@@ -18,8 +18,7 @@ class Penjualan(models.Model):
                                   states={'draft': [('readonly', False)]})
     sub_total = fields.Integer('Sub Total', compute='compute_total', store=True, readonly=True)
     total = fields.Integer('Total', compute='compute_total', store=True, readonly = True)
-    disc_header = fields.Float(string='Disc. (%)', digits='Discount',readonly=True,
-                                  states={'draft': [('readonly', False)]})
+    disc_header = fields.Float(string='Disc. (%)', digits='Discount',readonly=True,states={'draft': [('readonly', False)]})
 
     #Function untuk menghitung total dan subtotal
     @api.depends("line_ids.jumlah", "disc_header")
@@ -73,6 +72,7 @@ class PenjualanLine(models.Model):
     product_id = fields.Many2one(comodel_name='product.product', string='Nama Barang')
     harga = fields.Float('Harga', related='product_id.product_tmpl_id.list_price') #related field
     qty = fields.Float("Qty", digits='Discount')
+    retur_qty = fields.Float("Retur Qty", digits='Discount')
     uom_id = fields.Many2one(comodel_name='uom.uom', string='Satuan', related='product_id.product_tmpl_id.uom_id') #related field
     jumlah = fields.Float('Jumlah', compute='compute_jumlah', store=True, readonly=True)
     disc1 = fields.Float(string='Disc. 1(%)', digits='Discount')
